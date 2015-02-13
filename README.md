@@ -34,16 +34,17 @@ The `check` object returned by `checked()` has two methods:
 The following options are supported:
 
 * `selector`: a selector suffix to determine which checkboxes are
-  persisted. For instance, if you specify `.persist`, then only
-  elements matching `input[type=checkbox].persist` will be persisted.
+  persisted. For instance, if you specify `'.persist'`, then only
+  elements matching `'input[type=checkbox].persist'` will be persisted.
 * `namespace`: the prefix for [localStorage] keys, which can be used
   to either ensure or prevent checkboxes from being persisted across
-  pages. The default is `'checked:' + location.pathname`, which
+  pages. The default is `('checked:' + location.pathname)`, which
   should ensure that each checkbox at a unique URL will get a unique
   [localStorage] key.
 * `clear`: for convenience, you can provide this selector to tell
   checked to clear its memory when these elements are clicked. Or
   just do this:
+
   ```js
   document.querySelector('.checked-clear')
     .addEventListener('click', check.clear);
