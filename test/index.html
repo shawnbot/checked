@@ -4,19 +4,7 @@
     <meta charset="utf-8">
     <title>Checked</title>
     <script src="../checked.js"></script>
-    <style>
-      html {
-        padding: 1em
-      }
-
-      body {
-        font-family: 'Helvetica Neue', helvetica, arial, sans-serif;
-      }
-
-      h1 {
-        margin: 0;
-      }
-    </style>
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
     <h1>Checked: Persistent Checkboxes</h1>
@@ -32,13 +20,27 @@
 
     <p><input type="checkbox" data-persist="false"> this box should
       <em>not</em> persist.</p>
+
+    <h2>Data</h2>
+    <pre id="data"></pre>
   </body>
   <script>
 
-    checked({
+    var check = checked({
       selector: ':not([data-persist="false"])',
       clear: '.checked-clear'
     });
+
+    check.boxes.forEach(function(input) {
+      input.addEventListener('change', update);
+    });
+
+    update();
+
+    function update() {
+      var data = check.data();
+      document.querySelector('#data').innerText = JSON.stringify(data, null, '  ');
+    }
 
   </script>
 </html>
