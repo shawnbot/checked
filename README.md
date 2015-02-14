@@ -25,11 +25,11 @@ var check = checked({
 
 The `check` object returned by `checked()` has two methods:
 
-* check.**data()**: get an object containing the checked state of all
+* `check.data()`: get an object containing the checked state of all
   the tracked checkboxes.
-* check.**clear()**: reset the checkboxes to their original state and 
+* `check.clear()`: reset the checkboxes to their original state and 
   remove their respective keys from [localStorage].
-* check**.boxes**: an array of tracked checkbox inputs that you can
+* `check.boxes`: an array of tracked checkbox inputs that you can
   iterate over with `.forEach()`, etc.
 
 ### Options
