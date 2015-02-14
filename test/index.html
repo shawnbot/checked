@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Checked</title>
+    <script src="../checked.js"></script>
+    <style>
+      html {
+        padding: 1em
+      }
+
+      body {
+        font-family: 'Helvetica Neue', helvetica, arial, sans-serif;
+      }
+
+      h1 {
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Checked: Persistent Checkboxes</h1>
+    <p>You should be able to check these boxes and their checked
+      state will carry over between page reloads.</p>
+    <ol>
+      <li><input type="checkbox" name="add"> add some checkboxes</li>
+      <li><input type="checkbox" name="make"> make them persistent</li>
+      <li><input type="checkbox" name="profit"> profit?</li>
+    </ol>
+    <p><input type="checkbox" checked> this should be checked by default</p>
+    <p><button class="checked-clear">clear them all</button></p>
+
+    <p><input type="checkbox" data-persist="false"> this box should
+      <em>not</em> persist.</p>
+  </body>
+  <script>
+
+    checked({
+      selector: ':not([data-persist="false"])'
+    });
+
+  </script>
+</html>
