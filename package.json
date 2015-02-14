@@ -1,0 +1,24 @@
+{
+  "name": "checked",
+  "version": "1.0.0",
+  "description": "persist the values of HTML checkboxes",
+  "main": "checked.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shawnbot/checked.git"
+  },
+  "keywords": [
+    "html",
+    "checkbox",
+    "persistence"
+  ],
+  "author": "Shawn Allen <shawn.allen@gsa.gov>",
+  "license": "CC0",
+  "bugs": {
+    "url": "https://github.com/shawnbot/checked/issues"
+  },
+  "homepage": "https://github.com/shawnbot/checked"
+}
