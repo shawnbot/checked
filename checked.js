@@ -41,21 +41,28 @@
     function getData() {
       var data = {};
       boxes.forEach(function(box, i) {
-        data[box.__key__] = box.checked;
+        var k = box.__key__.replace(prefix, '');
+        if (box.checked) {
+          data[k] = box.value;
+        }
       });
       return data;
     }
 
     function clear() {
       boxes.forEach(function(box, i) {
-        box.checked = box.__checked__;
+        if (box.checked !== box.__checked__) {
+          box.checked = box.__checked__;
+          box.dispatchEvent(new Event('change'));
+        }
         storage.rem(box.__key__);
       });
     }
 
     return {
       data: getData,
-      clear: clear
+      clear: clear,
+      boxes: boxes
     };
   };
 
@@ -64,11 +71,7 @@
   }
 
   function defaultGetKey(input, index) {
-    return input.id
-      ? '#' + input.id
-      : input.name
-        ? '[name="' + input.name + '"]'
-        : '@' + index;
+    return input.id || input.name || '@' + index;
   }
 
   function getEngine(name) {
