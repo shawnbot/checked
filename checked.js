@@ -4,7 +4,8 @@
     selector: '',
     storage: 'localStorage',
     namespace: 'checked:' + location.pathname,
-    clear: '.checked-clear'
+    clear: '.checked-clear',
+    key: defaultGetKey
   };
 
   exports.checked = function(options) {
@@ -13,7 +14,10 @@
     var selector = 'input[type=checkbox]' + (options.selector || ''),
         storage = getEngine(options.storage),
         boxes = selectAll(selector),
-        prefix = options.namespace;
+        prefix = options.namespace,
+        getKey = function(input, index) {
+          return prefix + options.key(input, index);
+        };
 
     boxes.forEach(function(box, i) {
       var key = getKey(box, i),
@@ -34,20 +38,16 @@
       });
     }
 
-    function getKey(box, i) {
-      return prefix + (box.id || box.name || '@' + i);
-    }
-
     function getData() {
       var data = {};
-      forEach(boxes, function(box, i) {
+      boxes.forEach(function(box, i) {
         data[box.__key__] = box.checked;
       });
       return data;
     }
 
     function clear() {
-      forEach(boxes, function(box, i) {
+      boxes.forEach(function(box, i) {
         box.checked = box.__checked__;
         storage.rem(box.__key__);
       });
@@ -61,6 +61,14 @@
 
   function selectAll(selector) {
     return [].slice.call(document.querySelectorAll(selector));
+  }
+
+  function defaultGetKey(input, index) {
+    return input.id
+      ? '#' + input.id
+      : input.name
+        ? '[name="' + input.name + '"]'
+        : '@' + index;
   }
 
   function getEngine(name) {
@@ -78,10 +86,6 @@
         };
     }
     throw 'no such storage engine: ' + name;
-  }
-
-  function forEach(list, fn, context) {
-    return Array.prototype.forEach.call(list, fn, context || this);
   }
 
   function extend(obj) {
