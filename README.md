@@ -35,9 +35,10 @@ The `check` object returned by `checked()` has two methods:
 ### Options
 The following options are supported:
 
-* **selector**: a selector suffix to determine which checkboxes are
-  persisted. For instance, if you specify `'.persist'`, then only
-  elements matching `'input[type=checkbox].persist'` will be persisted.
+* **selector**: a selector suffix to more narrowly define which
+  checkboxes are persisted. For instance, if you specify `'.persist'`,
+  then only elements matching `'input[type=checkbox].persist'` will be
+  persisted.
 * **namespace**: the prefix for [localStorage] keys, which can be used
   to either ensure or prevent checkboxes from being persisted across
   pages. The default is `('checked:' + location.pathname)`, which
