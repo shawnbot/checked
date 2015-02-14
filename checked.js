@@ -1,11 +1,11 @@
 (function(exports) {
 
   var defaults = {
-    selector: '',
-    storage: 'localStorage',
-    namespace: 'checked:' + location.pathname,
-    clear: '.checked-clear',
-    key: defaultGetKey
+    selector:   '',
+    namespace:  'checked:' + location.pathname,
+    clear:      null,
+    key:        defaultGetKey,
+    storage:    'localStorage'
   };
 
   exports.checked = function(options) {
